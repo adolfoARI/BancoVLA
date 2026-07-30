@@ -6,14 +6,11 @@ import MODELS.etlexceptions as etlException
 
 app = FastAPI(title="Mantenimiento de usuarios")
 
-origins = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-]
+
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["https://bancovla-front.onrender.com"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
