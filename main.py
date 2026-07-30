@@ -1,10 +1,22 @@
+import os
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
+from dotenv import load_dotenv
 import routers.routerUsuario as routerUsuario
 import MODELS.etlexceptions as etlException
 
-app = FastAPI(title="Mantenimiento de usuarios")
+
+load_dotenv()
+ENVIRONMENT = os.environ.get("ENVIRONMENT", "development")
+IS_PRODUCTION = ENVIRONMENT.lower() == "production"
+
+app = FastAPI(
+    title="Mantenimiento de usuarios",
+    docs_url=None if IS_PRODUCTION else "/docs",
+    redoc_url=None if IS_PRODUCTION else "/redoc",
+    openapi_url=None if IS_PRODUCTION else "/openapi.json",
+)
 
 app.add_middleware(
     CORSMiddleware,
@@ -23,5 +35,8 @@ def business_error_handler(request:Request, exc: etlException.BusinessError):
             "mensaje" :exc.mensaje
         }
     )
+
+
+
 
 app.include_router(routerUsuario.router)
