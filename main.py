@@ -6,8 +6,6 @@ import MODELS.etlexceptions as etlException
 
 app = FastAPI(title="Mantenimiento de usuarios")
 
-
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["https://bancovla-front.onrender.com"],
@@ -27,7 +25,3 @@ def business_error_handler(request:Request, exc: etlException.BusinessError):
     )
 
 app.include_router(routerUsuario.router)
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=False)
