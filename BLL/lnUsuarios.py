@@ -11,13 +11,10 @@ def createUser(user: etlUsuario.UserCreateModel):
     existUser = adUsuario.existUser(user.username)
 
     if existUser:
-        raise etlException.BusinessError(1001, "El username ya existe")
-    
-    if user.age <18:
-        raise etlException.BusinessError(1002,"La edad debe ser mayor de 18 años")
+        raise etlException.BusinessError(1001, "El username ya existe")  
 
-    if user.active == False:
-        raise etlException.BusinessError(1003,"Solo se puede ingresar activo")
+    if user.active == True:
+        raise etlException.BusinessError(1003,"Solo se puede ingresar false")
 
     hashedPassword = etlSecurity.hash_password(user.password)
     

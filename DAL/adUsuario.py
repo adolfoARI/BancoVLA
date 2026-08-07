@@ -14,8 +14,8 @@ def createUser(user: etlUsuario.UserCreateModel, hashedPassword:str):
 
     try:
         cur = conn.cursor()
-        cur.execute("INSERT INTO usuario(nombre, edad, activo, username, password) VALUES(%s, %s, %s, %s, %s);",
-                    (user.name, user.age, user.active, user.username, hashedPassword))
+        cur.execute("INSERT INTO usuario(nombre, fechanacimiento, activo, username, password) VALUES(%s, %s, %s, %s, %s);",
+                    (user.name, user.birthdate, user.active, user.username, hashedPassword))
         conn.commit()
         cur.close()
     except Exception:

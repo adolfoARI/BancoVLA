@@ -54,7 +54,7 @@ def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(bearer_
 
         return username
     except JWTError:
-        raise etlException.BusinessError(1007, "Token inválido o expirado")
+        raise etlException.BusinessError(1007, "Token inválido o expirado", 401)
 
 def create_refresh_token(data:dict, expires_delta:timedelta | None = None)->str:
     to_encode = data.copy()  

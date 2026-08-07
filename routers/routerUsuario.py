@@ -15,7 +15,7 @@ def login(credentials: etlUsuario.LoginModel):
     return response
 
 @router.post("/CreateNewUser")
-def createNewUser(user:etlUsuario.UserCreateModel, currentUser: str = Depends(etlSecurity.get_current_user)):
+def createNewUser(user:etlUsuario.UserCreateModel):
     response = lnUsuario.createUser(user)
     return response
 

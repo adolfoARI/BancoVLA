@@ -1,8 +1,9 @@
 from pydantic import BaseModel
+from datetime import date
 
 class UserCreateModel(BaseModel):
     name: str
-    age: int
+    birthdate: date
     active: bool
     username : str
     password:str
